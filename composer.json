@@ -1,15 +1,6 @@
 {
-    "name": "danog/madelineproto",
-    "description": "PHP implementation of telegram's MTProto protocol.",
-    "type": "project",
-    "license": "AGPL-3.0-only",
-    "homepage": "https://docs.madelineproto.xyz",
-    "keywords": ["telegram", "mtproto", "protocol", "bytes", "messenger", "client", "PHP", "video", "stickers", "audio", "files", "GB"],
-    "conflict": {
-        "krakjoe/pthreads-polyfill": "*",
-        "ext-pthreads": "*"
-    },
     "require": {
+        "statickidz/php-google-translate-free": "^1.0",
         "php": ">=7.4.0",
         "danog/primemodule": "^1",
         "erusev/parsedown": "^1.7",
@@ -42,77 +33,5 @@
         "amphp/redis": "^1.0",
         "symfony/polyfill-php80": "^1.18",
         "amphp/websocket-client": "^1.0"
-    },
-    "require-dev": {
-        "phpdocumentor/reflection-docblock": "^5.2",
-        "vlucas/phpdotenv": "^3",
-        "ennexa/amp-update-cache": "dev-master",
-        "phpunit/phpunit": "^9",
-        "amphp/php-cs-fixer-config": "dev-master",
-        "amphp/http-server": "dev-master",
-        "amphp/http": "^1.6",
-        "ext-ctype": "*",
-        "danog/7to70": "^1",
-        "danog/7to5": "^1",
-        "vimeo/psalm": "dev-master",
-        "phpstan/phpstan": "^0.12.14",
-        "friendsofphp/php-cs-fixer": "^2.16",
-        "danog/phpdoc": "^0.1.7"
-    },
-    "suggest": {
-        "ext-libtgvoip": "Install the php-libtgvoip extension to make phone calls (https://github.com/danog/php-libtgvoip)"
-    },
-    "authors": [{
-        "name": "Daniil Gentili",
-        "email": "daniil@daniil.it"
-    }],
-    "autoload": {
-        "psr-4": {
-            "danog\\MadelineProto\\": "src/danog/MadelineProto"
-        },
-        "files": [
-            "src/BigIntegor.php",
-            "src/YieldReturnValue.php",
-            "src/danog/MadelineProto/Ipc/Runner/entry.php",
-            "src/polyfill.php"
-        ]
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "danog\\MadelineProto\\Test\\": "tests/danog/"
-        },
-        "files": [
-            "tools/build_docs/schemas.php",
-            "tools/build_docs/merge.php",
-            "tools/build_docs/layerUpgrade.php"
-        ]
-    },
-    "scripts": {
-        "post-autoload-dump": [
-            "git submodule init && git submodule update"
-        ],
-        "build": [
-            "@docs",
-            "@phpdoc",
-            "@cs-fix",
-            "@psalm"
-        ],
-        "phpdoc": [
-            "@phpdocInternal",
-            "@phpdocMain"
-        ],
-        "check": [
-            "@cs",
-            "@test"
-        ],
-        "test-php7": "tests/test-conversion.sh 70",
-        "test-php56": "tests/test-conversion.sh 5",
-        "cs": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix -v --diff --dry-run",
-        "cs-fix": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix -v --diff",
-        "psalm": "psalm",
-        "phpdocMain": "php tools/phpdoc.php",
-        "phpdocInternal": "phpdoc docs/docs/PHPInternal",
-        "docs": "php tools/build_docs.php",
-        "test": "@php -dzend.assertions=1 -dassert.exception=1 ./vendor/bin/phpunit --coverage-text --config tests/phpunit.xml"
     }
 }
